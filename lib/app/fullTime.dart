@@ -39,6 +39,15 @@ class _FullTimeServiceState extends State<FullTimeService> {
               ),
             ),
             SizedBox(height: 20.0),
+            TextField(
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                hintText: 'Search maid',
+                contentPadding: EdgeInsets.all(8.0),
+                suffixIcon: Icon(Icons.search),
+              ),
+            ),
+            SizedBox(height: 20.0),
             Column(
               children: dummyData.maids.map<Widget>((md) {
                 return _item(md);
@@ -53,24 +62,29 @@ class _FullTimeServiceState extends State<FullTimeService> {
   Widget _item(Maid md) {
     return Padding(
       padding: const EdgeInsets.all(4.0),
-      child: Card(
-        clipBehavior: Clip.hardEdge,
-        elevation: 5.0,
-        child: Row(
-          children: <Widget>[
-            _itemImage(),
-            _itemDetails(md),
-          ],
-        ),
-        color: Color.fromRGBO(0, 172, 233, 1),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8.0),
+      child: GestureDetector(
+        onTap: () {
+          Navigator.pushNamed(context, '/app/maidDetails', arguments: md);
+        },
+        child: Card(
+          clipBehavior: Clip.hardEdge,
+          elevation: 5.0,
+          child: Row(
+            children: <Widget>[
+              _itemImage(),
+              _itemDetails(md),
+            ],
+          ),
+          color: Color.fromRGBO(0, 172, 233, 1),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8.0),
+          ),
         ),
       ),
     );
   }
 
-  Expanded _itemDetails(Maid md) {
+  Widget _itemDetails(Maid md) {
     return Expanded(
       flex: 5,
       child: Container(
@@ -113,14 +127,15 @@ class _FullTimeServiceState extends State<FullTimeService> {
     );
   }
 
-  Expanded _itemImage() {
+  Widget _itemImage() {
     return Expanded(
       flex: 4,
-      child: Container(
-        height: 150,
-        child: Icon(
-          Icons.account_circle,
-          size: 120.0,
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: CircleAvatar(
+          radius: 60.0,
+          backgroundImage: NetworkImage(
+              'https://react.semantic-ui.com/images/wireframe/image.png'),
         ),
       ),
     );

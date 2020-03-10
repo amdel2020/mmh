@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mmh/app/app.dart';
 import 'package:mmh/app/fullTime.dart';
+import 'package:mmh/app/maidDetails.dart';
 import 'package:mmh/app/onDemand.dart';
 import 'package:mmh/app/partTime.dart';
 import 'package:mmh/app/settings.dart';
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.lightBlue,
-        fontFamily: 'Raleway'
+        fontFamily: 'Montserrat'
       ),
       initialRoute: '/',
       routes: {
@@ -30,6 +31,7 @@ class MyApp extends StatelessWidget {
         '/app/onDemand': (context) => OnDemandService(),
         '/app/onDemand': (context) => OnDemandService(),
         '/app/settings': (context) => Settings(),
+        '/app/maidDetails': (context) => MaidDetails(),
       },
     );
   }

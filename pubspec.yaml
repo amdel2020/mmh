@@ -33,3 +33,9 @@ flutter:
     - family: Raleway
       fonts:
         - asset: assets/fonts/Raleway-Regular.ttf
+    - family: Bellota
+      fonts:
+        - asset: assets/fonts/Bellota-Regular.ttf
+    - family: Montserrat
+      fonts:
+        - asset: assets/fonts/Montserrat-Regular.ttf

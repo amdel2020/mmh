@@ -16,14 +16,15 @@ class _WelcomeCarouselState extends State<WelcomeCarousel> {
       children: [
         CarouselSlider(
           autoPlay: true,
-          autoPlayInterval: Duration(seconds: 5),
+          autoPlayInterval: Duration(seconds: 3),
           autoPlayAnimationDuration: Duration(seconds: 1),
           autoPlayCurve: Curves.fastOutSlowIn,
           pauseAutoPlayOnTouch: Duration(seconds: 10),
+          enlargeCenterPage: true,
           initialPage: 0,
           height: MediaQuery.of(context).size.height * 0.5,
           items: _items(),
-          aspectRatio: 2.0,
+          viewportFraction: 0.8,
           onPageChanged: (index) {
             setState(() {
               _current = index;
