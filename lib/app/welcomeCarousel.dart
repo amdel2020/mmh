@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:mmh/arguments/workerListDetails.dart';
 import 'package:mmh/models/services.dart';
 
 class WelcomeCarousel extends StatefulWidget {
@@ -60,7 +61,7 @@ class _WelcomeCarouselState extends State<WelcomeCarousel> {
   }
 
   // Private widgets
-  Text _description(Service i) {
+  Widget _description(Service i) {
     return Text(
       i.description,
       style: TextStyle(
@@ -70,7 +71,7 @@ class _WelcomeCarouselState extends State<WelcomeCarousel> {
     );
   }
 
-  RaisedButton _detailButton(BuildContext context, ServiceType serviceType) {
+  Widget _detailButton(BuildContext context, ServiceType serviceType) {
     return RaisedButton(
       onPressed: () => _handleClick(context, serviceType),
       child: Text(
@@ -84,7 +85,7 @@ class _WelcomeCarouselState extends State<WelcomeCarousel> {
     );
   }
 
-  Text _header(Service i) {
+  Widget _header(Service i) {
     return Text(
       i.header,
       style: TextStyle(
@@ -96,7 +97,7 @@ class _WelcomeCarouselState extends State<WelcomeCarousel> {
     );
   }
 
-  Card _item(Service i) {
+  Widget _item(Service i) {
     return Card(
       elevation: 5.0,
       child: Padding(
@@ -135,22 +136,25 @@ class _WelcomeCarouselState extends State<WelcomeCarousel> {
 
   // Private methods
   void _handleClick(BuildContext context, ServiceType type) {
-    String routeName = '';
+    WorkerListDetails workerListDetails = WorkerListDetails();
 
     switch (type) {
       case ServiceType.FULLTIME:
-        routeName = '/app/fullTime';
+        workerListDetails.title = 'Full Time Workers';
+        workerListDetails.serviceType = ServiceType.FULLTIME;
         break;
       case ServiceType.PARTTIME:
-        routeName = '/app/partTime';
+        workerListDetails.title = 'Part Time Workers';
+        workerListDetails.serviceType = ServiceType.PARTTIME;
         break;
       case ServiceType.ONDEMAND:
-        routeName = '/app/onDemand';
+        workerListDetails.title = 'On-demand Workers';
+        workerListDetails.serviceType = ServiceType.ONDEMAND;
         break;
       default:
         break;
     }
 
-    Navigator.pushNamed(context, routeName);
+    Navigator.pushNamed(context, '/app/workerList', arguments: workerListDetails);
   }
 }

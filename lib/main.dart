@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mmh/app/app.dart';
-import 'package:mmh/app/fullTime.dart';
 import 'package:mmh/app/maidDetails.dart';
-import 'package:mmh/app/onDemand.dart';
-import 'package:mmh/app/partTime.dart';
 import 'package:mmh/app/settings.dart';
+import 'package:mmh/app/workerList.dart';
 import 'package:mmh/auth/signInPage.dart';
 import 'package:mmh/auth/signUpPage.dart';
 import 'package:mmh/landingPage.dart';
@@ -26,10 +24,7 @@ class MyApp extends StatelessWidget {
         '/signIn': (context) => SignInPage(),
         '/signUp': (context) => SignUpPage(),
         '/app': (context) => App(),
-        '/app/fullTime': (context) => FullTimeService(),
-        '/app/partTime': (context) => PartTimeService(),
-        '/app/onDemand': (context) => OnDemandService(),
-        '/app/onDemand': (context) => OnDemandService(),
+        '/app/workerList': (context) => WorkerList(),
         '/app/settings': (context) => Settings(),
         '/app/maidDetails': (context) => MaidDetails(),
       },

@@ -11,21 +11,23 @@ class _MaidDetailsState extends State<MaidDetails> {
 
   @override
   Widget build(BuildContext context) {
-    final Maid maid = ModalRoute.of(context).settings.arguments;
+    final Worker maid = ModalRoute.of(context).settings.arguments;
 
-    return Scaffold(
-      appBar: _appBar(maid.name),
-      body: _body(maid),
-      floatingActionButton: FloatingActionButton.extended(
-        elevation: 19.0,
-        onPressed: () {},
-        label: Text(
-          'Book',
-          style: TextStyle(fontSize: 18.0),
+    return SafeArea(
+      child: Scaffold(
+        appBar: _appBar(maid.name),
+        body: _body(maid),
+        floatingActionButton: FloatingActionButton.extended(
+          elevation: 19.0,
+          onPressed: () {},
+          label: Text(
+            'Book',
+            style: TextStyle(fontSize: 18.0),
+          ),
+          icon: Icon(Icons.add),
         ),
-        icon: Icon(Icons.add),
+        floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }
 
@@ -72,7 +74,7 @@ class _MaidDetailsState extends State<MaidDetails> {
     );
   }
 
-  Widget _body(Maid maid) {
+  Widget _body(Worker maid) {
     return Column(
       children: <Widget>[
         Column(
@@ -99,7 +101,7 @@ class _MaidDetailsState extends State<MaidDetails> {
     );
   }
 
-  Widget _details(Maid maid) {
+  Widget _details(Worker maid) {
     return Container(
       width: double.infinity,
       child: Padding(
