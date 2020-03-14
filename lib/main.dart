@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
         '/app': (context) => App(),
         '/app/workerList': (context) => WorkerList(),
         '/app/settings': (context) => Settings(),
-        '/app/maidDetails': (context) => MaidDetails(),
+        '/app/maidDetails': (context) => WorkerDetails(),
       },
     );
   }

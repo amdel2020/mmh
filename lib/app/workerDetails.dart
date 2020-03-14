@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:mmh/models/maids.dart';
 
-class MaidDetails extends StatefulWidget {
+class WorkerDetails extends StatefulWidget {
   @override
-  _MaidDetailsState createState() => _MaidDetailsState();
+  _WorkerDetailsState createState() => _WorkerDetailsState();
 }
 
-class _MaidDetailsState extends State<MaidDetails> {
+class _WorkerDetailsState extends State<WorkerDetails> {
   final _sizedBox = SizedBox(height: 8.0);
 
   @override
