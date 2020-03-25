@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:mmh/app/dateTimePicker.dart';
 import 'package:mmh/models/maids.dart';
+import 'package:mmh/models/services.dart';
 
 class WorkerDetails extends StatefulWidget {
   @override
@@ -8,18 +10,23 @@ class WorkerDetails extends StatefulWidget {
 
 class _WorkerDetailsState extends State<WorkerDetails> {
   final _sizedBox = SizedBox(height: 8.0);
+  DateTime _fromDate = DateTime.now();
+  TimeOfDay _fromTime = const TimeOfDay(hour: 7, minute: 28);
+  DateTime _toDate = DateTime.now();
+  TimeOfDay _toTime = const TimeOfDay(hour: 7, minute: 28);
 
   @override
   Widget build(BuildContext context) {
-    final Worker maid = ModalRoute.of(context).settings.arguments;
+    final Worker worker = ModalRoute.of(context).settings.arguments;
 
     return SafeArea(
       child: Scaffold(
-        appBar: _appBar(maid.name),
-        body: _body(maid),
+        appBar: _appBar(worker.name),
+        body: _body(worker),
         floatingActionButton: FloatingActionButton.extended(
+          backgroundColor: Colors.lightBlueAccent,
           elevation: 19.0,
-          onPressed: () {},
+          onPressed: () => _onBookClick(worker),
           label: Text(
             'Book',
             style: TextStyle(fontSize: 18.0),
@@ -75,19 +82,21 @@ class _WorkerDetailsState extends State<WorkerDetails> {
   }
 
   Widget _body(Worker maid) {
-    return Column(
-      children: <Widget>[
-        Column(
-          children: <Widget>[
-            _image(),
-            _sizedBox,
-            _name(maid.name),
-            _sizedBox,
-            _charges(maid.charges),
-            _details(maid)
-          ],
-        ),
-      ],
+    return SingleChildScrollView(
+      child: Column(
+        children: <Widget>[
+          Column(
+            children: <Widget>[
+              _image(),
+              _sizedBox,
+              _name(maid.name),
+              _sizedBox,
+              _charges(maid.charges),
+              _details(maid)
+            ],
+          ),
+        ],
+      ),
     );
   }
 
@@ -132,16 +141,35 @@ class _WorkerDetailsState extends State<WorkerDetails> {
     );
   }
 
+  Widget _fromDateTime() {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: DateTimePicker(
+        labelText: 'From',
+        selectedDate: _fromDate,
+        selectedTime: _fromTime,
+        selectDate: (DateTime date) {
+          setState(() {
+            _fromDate = date;
+          });
+        },
+        selectTime: (TimeOfDay time) {
+          setState(() {
+            _fromTime = time;
+          });
+        },
+      ),
+    );
+  }
+
   Widget _image() {
     return Container(
-      color: Color.fromRGBO(0, 172, 233, 1),
+      color: Colors.white,
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Center(
           child: CircleAvatar(
             radius: 100.0,
-            backgroundImage: NetworkImage(
-                'https://react.semantic-ui.com/images/wireframe/image.png'),
           ),
         ),
       ),
@@ -178,5 +206,97 @@ class _WorkerDetailsState extends State<WorkerDetails> {
         fontWeight: FontWeight.w600,
       ),
     );
+  }
+
+  Widget _toDateTime() {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: DateTimePicker(
+        labelText: 'To',
+        selectedDate: _toDate,
+        selectedTime: _toTime,
+        selectDate: (DateTime date) {
+          setState(() {
+            _toDate = date;
+          });
+        },
+        selectTime: (TimeOfDay time) {
+          setState(() {
+            _toTime = time;
+          });
+        },
+      ),
+    );
+  }
+
+  Widget _timeSlots() {
+    return MediaQuery.removePadding(
+      context: context,
+      child: SafeArea(
+        child: Scaffold(
+          bottomSheet: Container(
+            color: Colors.lightBlue,
+            width: double.infinity,
+            height: 55.0,
+            child: FlatButton(
+              child: Text(
+                'Continue',
+                style: TextStyle(fontSize: 18.0),
+              ),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+          ),
+          appBar: AppBar(
+            title: Text(
+              'Select time slot',
+            ),
+          ),
+          body: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                _fromDateTime(),
+                SizedBox(height: 16.0),
+                _toDateTime(),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  // private methods
+  void _onBookClick(Worker worker) {
+    switch (worker.serviceType) {
+      case ServiceType.FULLTIME:
+        {
+          print('full time');
+          break;
+        }
+      case ServiceType.PARTTIME:
+        {
+          Navigator.push<void>(
+            context,
+            MaterialPageRoute(
+              builder: (context) => _timeSlots(),
+              fullscreenDialog: true,
+            ),
+          );
+          break;
+        }
+      case ServiceType.ONDEMAND:
+        {
+          print('on demand');
+          break;
+        }
+      default:
+        {
+          break;
+        }
+    }
   }
 }

@@ -11,7 +11,7 @@ class LandingPage extends StatelessWidget {
             text,
             style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.bold),
           ),
-          color: Color.fromRGBO(0, 175, 255, 1),
+          color: Colors.blue,
           onPressed: onPressed,
         ),
       ),
@@ -34,7 +34,7 @@ class LandingPage extends StatelessWidget {
     );
   }
 
-  Row _footer(BuildContext context) {
+  Widget _footer(BuildContext context) {
     return Row(
       children: <Widget>[
         _authButton('Log In', () {

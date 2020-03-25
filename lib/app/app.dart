@@ -1,10 +1,17 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:mmh/app/tracker.dart';
 import 'package:mmh/app/welcomeCarousel.dart';
 
-class App extends StatelessWidget {
+class App extends StatefulWidget {
+  @override
+  _AppState createState() => _AppState();
+}
+
+class _AppState extends State<App> {
   final divider = SizedBox(height: 10);
+  int _selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -15,9 +22,7 @@ class App extends StatelessWidget {
     );
   }
 
-  // private widgets
-
-  AppBar _appBar(BuildContext context) {
+  Widget _appBar(BuildContext context) {
     return AppBar(
       backgroundColor: Colors.white,
       title: Text('MMH'),
@@ -40,6 +45,35 @@ class App extends StatelessWidget {
   }
 
   Widget _body() {
+    switch (_selectedIndex) {
+      case 0:
+        return _home();
+      case 1:
+        return Tracker();
+      default:
+        return _home();
+    }
+  }
+
+  Widget _bottomNavigationBar() {
+    return BottomNavigationBar(
+      backgroundColor: Colors.white,
+      onTap: _onItemTapped,
+      currentIndex: _selectedIndex,
+      items: [
+        BottomNavigationBarItem(
+          title: Text('Home'),
+          icon: Icon(Icons.home),
+        ),
+        BottomNavigationBarItem(
+          title: Text('Tracker'),
+          icon: Icon(Icons.track_changes),
+        )
+      ],
+    );
+  }
+
+  Widget _home() {
     return Padding(
       padding: const EdgeInsets.all(32.0),
       child: Column(
@@ -55,29 +89,24 @@ class App extends StatelessWidget {
     );
   }
 
-  BottomNavigationBar _bottomNavigationBar() {
-    return BottomNavigationBar(
-      elevation: 20.0,
-      backgroundColor: Colors.white,
-      items: [
-        BottomNavigationBarItem(title: Text('Home'), icon: Icon(Icons.home)),
-        BottomNavigationBarItem(
-            title: Text('Settings'), icon: Icon(Icons.settings))
-      ],
-    );
-  }
-
-  Text _serviceHeader() {
+  Widget _serviceHeader() {
     return Text(
       'We Offer these Services',
       style: TextStyle(fontWeight: FontWeight.w700, fontSize: 28.0),
     );
   }
 
-  Text _welcomeHeader() {
+  Widget _welcomeHeader() {
     return Text(
       'Welcome, Amit',
       style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16.0),
     );
+  }
+
+  // Private methods
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
   }
 }

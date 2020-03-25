@@ -21,7 +21,6 @@ class _WelcomeCarouselState extends State<WelcomeCarousel> {
           autoPlayAnimationDuration: Duration(seconds: 1),
           autoPlayCurve: Curves.fastOutSlowIn,
           pauseAutoPlayOnTouch: Duration(seconds: 10),
-          enlargeCenterPage: true,
           initialPage: 0,
           height: MediaQuery.of(context).size.height * 0.5,
           items: _items(),
@@ -111,7 +110,7 @@ class _WelcomeCarouselState extends State<WelcomeCarousel> {
           ],
         ),
       ),
-      color: Color.fromRGBO(0, 172, 233, 1),
+      color: Colors.white,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(5.0),
       ),
@@ -155,6 +154,7 @@ class _WelcomeCarouselState extends State<WelcomeCarousel> {
         break;
     }
 
-    Navigator.pushNamed(context, '/app/workerList', arguments: workerListDetails);
+    Navigator.pushNamed(context, '/app/workerList',
+        arguments: workerListDetails);
   }
 }

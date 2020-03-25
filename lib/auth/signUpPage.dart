@@ -101,7 +101,7 @@ class SignUpPage extends StatelessWidget {
           'Sign Up',
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),
         ),
-        color: Color.fromRGBO(0, 172, 233, 1),
+        color: Colors.blue,
       ),
     );
   }
@@ -111,7 +111,7 @@ class SignUpPage extends StatelessWidget {
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
-        backgroundColor: Color.fromRGBO(0, 172, 233, 1),
+        backgroundColor: Colors.white,
         title: Text('Sign Up'),
       ),
       body: Padding(

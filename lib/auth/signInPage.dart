@@ -78,7 +78,7 @@ class SignInPage extends StatelessWidget {
           'Sign In',
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),
         ),
-        color: Color.fromRGBO(0, 172, 233, 1),
+        color: Colors.blue,
       ),
     );
   }
@@ -88,7 +88,7 @@ class SignInPage extends StatelessWidget {
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
-        backgroundColor: Color.fromRGBO(0, 172, 233, 1),
+        backgroundColor: Colors.white,
         title: Text('Sign In'),
       ),
       body: Padding(

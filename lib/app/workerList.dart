@@ -73,7 +73,7 @@ class WorkerList extends StatelessWidget {
               _itemDetails(worker),
             ],
           ),
-          color: Color.fromRGBO(0, 172, 233, 1),
+          color: Colors.white,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8.0),
           ),
@@ -131,9 +131,7 @@ class WorkerList extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: CircleAvatar(
-          radius: 60.0,
-          backgroundImage: NetworkImage(
-              'https://react.semantic-ui.com/images/wireframe/image.png'),
+          radius: 70.0,
         ),
       ),
     );
